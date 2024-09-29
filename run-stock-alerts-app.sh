@@ -10,8 +10,8 @@ cleanup() {
     exit 0
 }
 
-# Trap CTRL+C (SIGINT) to run cleanup
-trap cleanup SIGINT
+# Trap CTRL+C (SIGINT), terminal close (SIGHUP), and kill (SIGTERM) to run cleanup
+trap cleanup SIGINT SIGHUP SIGTERM
 
 # Check if the script is already running
 if [ -f "$LOCKFILE" ]; then
